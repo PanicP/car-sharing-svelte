@@ -2,6 +2,6 @@
   import MainLayout from "../components/MainLayout.svelte";
 </script>
 
-<div><MainLayout>Landing</MainLayout></div>
+<div><MainLayout>about</MainLayout></div>
 
 <style></style>

@@ -1,5 +1,5 @@
 <script></script>
 
-<div>CarDetail</div>
+<div><MainLayout>car detail</MainLayout></div>
 
 <style></style>

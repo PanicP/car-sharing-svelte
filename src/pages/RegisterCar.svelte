@@ -1,5 +1,7 @@
-<script></script>
+<script>
+  import MainLayout from "../components/MainLayout.svelte";
+</script>
 
-<div>Login</div>
+<div><MainLayout>regis car</MainLayout></div>
 
 <style></style>
