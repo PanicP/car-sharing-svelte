@@ -18,6 +18,8 @@
     "vite": "^3.2.3"
   },
   "dependencies": {
+    "js-cookie": "^3.0.1",
+    "lodash": "^4.17.21",
     "svelte-routing": "^1.6.0"
   }
 }

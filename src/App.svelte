@@ -14,7 +14,7 @@
   <!-- <div>Landing</div>
   <Login /> -->
   <!-- svelte-ignore a11y-missing-attribute -->
-  <html data-theme="luxury">
+  <html data-theme="dracula">
     <Router {url}>
       <!-- <nav>
         <Link to="/">Home</Link>
@@ -22,7 +22,7 @@
       </nav> -->
       <div>
         <Route path="about" component={About} />
-        <Route path="cardetail" component={CarDetail} />
+        <Route path="car/:id" component={CarDetail} />
         <Route path="findingcar" component={FindingCar} />
         <Route path="login" component={Login} />
         <Route path="registercar" component={RegisterCar} />
