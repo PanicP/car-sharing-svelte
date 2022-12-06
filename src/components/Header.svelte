@@ -4,7 +4,22 @@
 
     let loginUser, loginPassword
     let registerUser, registerPassword, registerRePassword
-    let isRegisterModalOpen
+    let isLoginModalOpen, isRegisterModalOpen
+    let isShowNoti = false
+
+    const handleLogin = () => {
+        $store.registedUsers.forEach((regUser) => {
+            if (regUser?.user === loginUser) {
+                if (regUser?.password === loginPassword) {
+                    isLoginModalOpen = false
+                    isShowNoti = true
+                    setTimeout(() => {
+                        isShowNoti = false
+                    }, 5000)
+                }
+            }
+        })
+    }
 
     const handleRegister = () => {
         if (registerPassword === registerRePassword) {
@@ -13,62 +28,27 @@
                 { user: registerUser, password: registerPassword },
             ]
             isRegisterModalOpen = false
+            isShowNoti = true
+            setTimeout(() => {
+                isShowNoti = false
+            }, 5000)
         }
     }
 </script>
 
-<!-- <div class="container">
-  {#each $store.navs as nav, index}
-    <div>{nav.label}</div>
-  {/each}
-</div> -->
 <div class="navbar bg-base-100">
+    <!-- noti -->
+    {#if isShowNoti}
+        <div class="toast toast-top toast-end z-10">
+            <div class="alert alert-success">
+                <div>
+                    <span>Successfully.</span>
+                </div>
+            </div>
+        </div>
+    {/if}
     <!-- register modal -->
     <div class="navbar-start">
-        <!-- <div class="dropdown">
-      <label tabindex="0" class="btn btn-ghost lg:hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h16"
-          /></svg
-        >
-      </label>
-      <ul
-        tabindex="0"
-        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li><a>Item 1</a></li>
-        <li tabindex="0">
-          <a class="justify-between">
-            Parent
-            <svg
-              class="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              ><path
-                d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
-              /></svg
-            >
-          </a>
-          <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a>Item 3</a></li>
-      </ul>
-    </div> -->
-
         <div class="btn btn-ghost normal-case text-xl">
             <Link to="/">Panic Sharing</Link>
         </div>
@@ -77,7 +57,12 @@
         <label class="btn" for="login-modal">Login</label>
 
         <!-- login modal -->
-        <input type="checkbox" id="login-modal" class="modal-toggle" />
+        <input
+            type="checkbox"
+            id="login-modal"
+            class="modal-toggle"
+            bind:checked={isLoginModalOpen}
+        />
         <label for="login-modal" class="modal cursor-pointer">
             <label class="modal-box relative" for="">
                 <h3 class="text-lg font-bold">Login</h3>
@@ -110,14 +95,13 @@
                 </div>
 
                 <div class="modal-action">
-                    <div class="btn">Register</div>
-                    <div class="btn">Cancel</div>
+                    <button class="btn" on:click={handleLogin}>Login</button>
+                    <label for="login-modal" class="btn">Cancel</label>
                 </div>
             </label>
         </label>
 
         <label class="btn ml-1" for="register-modal">Register</label>
-
         <!-- Register Modal -->
         <input
             type="checkbox"
@@ -166,9 +150,9 @@
                 </div>
 
                 <div class="modal-action">
-                    <button class="btn" on:click={handleRegister}
-                        >Register</button
-                    >
+                    <button class="btn" on:click={handleRegister}>
+                        Register
+                    </button>
                     <label for="register-modal" class="btn">Cancel</label>
                 </div>
             </label>

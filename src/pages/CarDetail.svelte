@@ -1,5 +1,6 @@
 <script>
     import { find } from 'lodash-es'
+
     import MainLayout from '../components/MainLayout.svelte'
     import { store } from '../store/store'
 
@@ -14,7 +15,7 @@
             {car?.user?.name}
             <div />
             // <!-- map -->
-            <div />
+            apiKey="AIzaSyCy9QphZsJQHjpeaTyja9kx7PIK-9qgP1E" />
         </div>
         // <!-- detail -->
         <div />
