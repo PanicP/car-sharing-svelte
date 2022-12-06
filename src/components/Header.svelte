@@ -1,6 +1,20 @@
 <script>
-  import { Link } from "svelte-routing";
-  import { store } from "../store/store";
+    import { Link } from 'svelte-routing'
+    import { store } from '../store/store'
+
+    let loginUser, loginPassword
+    let registerUser, registerPassword, registerRePassword
+    let isRegisterModalOpen
+
+    const handleRegister = () => {
+        if (registerPassword === registerRePassword) {
+            $store.registedUsers = [
+                ...$store.registedUsers,
+                { user: registerUser, password: registerPassword },
+            ]
+            isRegisterModalOpen = false
+        }
+    }
 </script>
 
 <!-- <div class="container">
@@ -9,9 +23,9 @@
   {/each}
 </div> -->
 <div class="navbar bg-base-100">
-  <!-- register modal -->
-  <div class="navbar-start">
-    <!-- <div class="dropdown">
+    <!-- register modal -->
+    <div class="navbar-start">
+        <!-- <div class="dropdown">
       <label tabindex="0" class="btn btn-ghost lg:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -55,99 +69,111 @@
       </ul>
     </div> -->
 
-    <div class="btn btn-ghost normal-case text-xl">
-      <Link to="/">Panic Sharing</Link>
+        <div class="btn btn-ghost normal-case text-xl">
+            <Link to="/">Panic Sharing</Link>
+        </div>
     </div>
-  </div>
-  <div class="navbar-end">
-    <label class="btn" for="login-modal">Login</label>
+    <div class="navbar-end">
+        <label class="btn" for="login-modal">Login</label>
 
-    <!-- login modal -->
-    <input type="checkbox" id="login-modal" class="modal-toggle" />
-    <label for="login-modal" class="modal cursor-pointer">
-      <label class="modal-box relative" for="">
-        <h3 class="text-lg font-bold">Login</h3>
-        <!-- <p class="py-4">
+        <!-- login modal -->
+        <input type="checkbox" id="login-modal" class="modal-toggle" />
+        <label for="login-modal" class="modal cursor-pointer">
+            <label class="modal-box relative" for="">
+                <h3 class="text-lg font-bold">Login</h3>
+                <!-- <p class="py-4">
           You've been selected for a chance to get one year of subscription to
           use Wikipedia for free!
         </p> -->
-        <div class="form-control">
-          <!-- <label class="label">
+                <div class="form-control">
+                    <!-- <label class="label">
             <span class="label-text">Your Email</span>
           </label> -->
-          <label class="input-group mt-8">
-            <span class="px-11">ID</span>
-            <input
-              type="text"
-              placeholder="Your ID"
-              class="input input-bordered"
-            />
-          </label>
-          <label class="input-group mt-8">
-            <span>Password</span>
-            <input
-              type="password"
-              placeholder="Your Password"
-              class="input input-bordered"
-            />
-          </label>
-        </div>
+                    <label class="input-group mt-8">
+                        <span class="px-11">ID</span>
+                        <input
+                            type="text"
+                            placeholder="Your ID"
+                            class="input input-bordered"
+                            bind:value={loginUser}
+                        />
+                    </label>
+                    <label class="input-group mt-8">
+                        <span>Password</span>
+                        <input
+                            type="password"
+                            placeholder="Your Password"
+                            class="input input-bordered"
+                            bind:value={loginPassword}
+                        />
+                    </label>
+                </div>
 
-        <div class="modal-action">
-          <div class="btn">Register</div>
-          <div class="btn">Cancel</div>
-        </div>
-      </label>
-    </label>
+                <div class="modal-action">
+                    <div class="btn">Register</div>
+                    <div class="btn">Cancel</div>
+                </div>
+            </label>
+        </label>
 
-    <label class="btn ml-1" for="register-modal">Register</label>
+        <label class="btn ml-1" for="register-modal">Register</label>
 
-    <!-- Register Modal -->
-    <input type="checkbox" id="register-modal" class="modal-toggle" />
-    <label for="register-modal" class="modal cursor-pointer">
-      <label class="modal-box relative" for="">
-        <h3 class="text-lg font-bold">Login</h3>
-        <!-- <p class="py-4">
+        <!-- Register Modal -->
+        <input
+            type="checkbox"
+            id="register-modal"
+            class="modal-toggle"
+            bind:checked={isRegisterModalOpen}
+        />
+        <label for="register-modal" class="modal cursor-pointer">
+            <label class="modal-box relative" for="">
+                <h3 class="text-lg font-bold">Login</h3>
+                <!-- <p class="py-4">
           You've been selected for a chance to get one year of subscription to
           use Wikipedia for free!
         </p> -->
-        <div class="form-control">
-          <!-- <label class="label">
+                <div class="form-control">
+                    <!-- <label class="label">
             <span class="label-text">Your Email</span>
           </label> -->
-          <label class="input-group mt-8">
-            <span class="px-11">ID</span>
-            <input
-              type="text"
-              placeholder="Your ID"
-              class="input input-bordered"
-            />
-          </label>
-          <label class="input-group mt-8">
-            <span>Password</span>
-            <input
-              type="password"
-              placeholder="Your Password"
-              class="input input-bordered"
-            />
-          </label>
-          <label class="input-group mt-8">
-            <span>Re-Password</span>
-            <input
-              type="password"
-              placeholder="Your Password"
-              class="input input-bordered"
-            />
-          </label>
-        </div>
+                    <label class="input-group mt-8">
+                        <span class="px-11">ID</span>
+                        <input
+                            type="text"
+                            placeholder="Your ID"
+                            class="input input-bordered"
+                            bind:value={registerUser}
+                        />
+                    </label>
+                    <label class="input-group mt-8">
+                        <span>Password</span>
+                        <input
+                            type="password"
+                            placeholder="Your Password"
+                            class="input input-bordered"
+                            bind:value={registerPassword}
+                        />
+                    </label>
+                    <label class="input-group mt-8">
+                        <span>Re-Password</span>
+                        <input
+                            type="password"
+                            placeholder="Your Re-Password"
+                            class="input input-bordered"
+                            bind:value={registerRePassword}
+                        />
+                    </label>
+                </div>
 
-        <div class="modal-action">
-          <div class="btn">Login</div>
-          <div class="btn">Cancel</div>
-        </div>
-      </label>
-    </label>
-  </div>
+                <div class="modal-action">
+                    <button class="btn" on:click={handleRegister}
+                        >Register</button
+                    >
+                    <label for="register-modal" class="btn">Cancel</label>
+                </div>
+            </label>
+        </label>
+    </div>
 </div>
 
 <style>

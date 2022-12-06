@@ -54,4 +54,14 @@ export const store = writable({
         maxSeat: 4,
         seatAvailable: 2
     },
+    registedUsers: [
+        {
+            user: 'testpanic',
+            password: 'testpanic'
+        },
+        {
+            user: 'test2',
+            password: 'test2'
+        }
+    ]
 })
