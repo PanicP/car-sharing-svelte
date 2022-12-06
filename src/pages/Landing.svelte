@@ -1,12 +1,11 @@
 <script>
   import { onMount } from "svelte";
   import Cookies from "js-cookie";
-  import _ from "lodash";
+  import { isNil } from "lodash-es";
   import MainLayout from "../components/MainLayout.svelte";
-  import { store } from "../store/store";
   import CarCard from "../components/cards/CarCard.svelte";
 
-  $: isLogin = !_.isNil(Cookies.get("auth"));
+  $: isLogin = !isNil(Cookies.get("auth"));
 
   onMount(async () => {
     Cookies.set(

@@ -1,10 +1,10 @@
 <script>
-  import _ from "lodash";
+  import { find } from "lodash-es";
   import MainLayout from "../components/MainLayout.svelte";
   import { store } from "../store/store";
 
   export let id;
-  $: car = _.find($store.cars, (car) => car.id == id);
+  $: car = find($store.cars, (car) => car.id == id);
 </script>
 
 <div>
