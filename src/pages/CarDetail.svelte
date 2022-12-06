@@ -11,14 +11,20 @@
 <div>
     <MainLayout>
         <div>
-            // <!-- profile -->
+            <!-- profile -->
             {car?.user?.name}
             <div />
-            // <!-- map -->
-            apiKey="AIzaSyCy9QphZsJQHjpeaTyja9kx7PIK-9qgP1E" />
+            <!-- map -->
         </div>
-        // <!-- detail -->
-        <div />
+        <!-- detail -->
+        <div>
+            <div>Age: {car.user.age}</div>
+            <div>Sex: {car.user.sex}</div>
+            <div>Car Brand: {car.car.brand}</div>
+            <div>Car Model: {car.car.model}</div>
+            <div>Max Seat: {car.maxSeat}</div>
+            <div>Seat Available: {car.seatAvailable}</div>
+        </div>
     </MainLayout>
 </div>
 
