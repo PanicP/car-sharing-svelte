@@ -5,63 +5,69 @@ export const store = writable({
         {
             key: 'home',
             label: 'Home',
-        }
+        },
     ],
     cars: [
         {
             id: 1,
-            image: 'https://placeimg.com/200/280/arch',
+            image: 'https://placeimg.com/400/300/arch',
+            imageLarge: 'https://placeimg.com/1000/500/arch',
             user: {
-                name: "Aaaaaaaa Bbbbbbbbb1",
+                name: 'Aaaaaaaa Bbbbbbbbb1',
                 age: 23,
-                sex: 'male'
+                sex: 'male',
             },
             car: {
-                brand: "ABC",
-                model: "model"
+                brand: 'ABC',
+                model: 'model',
             },
             maxSeat: 4,
-            seatAvailable: 2
+            seatAvailable: 2,
         },
         {
             id: 2,
-            image: 'https://placeimg.com/200/280/arch',
+            image: 'https://placeimg.com/400/300/arch',
+            imageLarge: 'https://placeimg.com/1000/500/arch',
             user: {
-                name: "Aaaaaaaa Bbbbbbbbb2",
+                name: 'Aaaaaaaa Bbbbbbbbb2',
                 age: 23,
-                sex: 'male'
+                sex: 'male',
             },
             car: {
-                brand: "ABC",
-                model: "model"
+                brand: 'ABC',
+                model: 'model',
             },
             maxSeat: 4,
-            seatAvailable: 2
-        }
+            seatAvailable: 2,
+        },
     ],
-    bookedCars: {
-        id: 1,
-        image: './src/public/image/tempProfile.jpg',
-        user: {
-            name: "Aaaaaaaa Bbbbbbbbb",
-            age: 23,
-            sex: 'male'
+    bookedCars: [
+        {
+            id: 1,
+            image: 'https://placeimg.com/400/300/arch',
+            imageLarge: 'https://placeimg.com/1000/500/arch',
+            user: {
+                name: 'Aaaaaaaa Bbbbbbbbb',
+                age: 23,
+                sex: 'male',
+            },
+            car: {
+                brand: 'ABC',
+                model: 'model',
+            },
+            maxSeat: 4,
+            seatAvailable: 2,
         },
-        car: {
-            brand: "ABC",
-            model: "model"
-        },
-        maxSeat: 4,
-        seatAvailable: 2
-    },
+    ],
     registedUsers: [
         {
             user: 'testpanic',
-            password: 'testpanic'
+            password: 'testpanic',
         },
         {
             user: 'test2',
-            password: 'test2'
-        }
-    ]
+            password: 'test2',
+        },
+    ],
+    isLogin: false,
 })
