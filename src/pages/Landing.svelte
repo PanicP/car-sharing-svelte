@@ -5,7 +5,7 @@
     import MainLayout from '../components/MainLayout.svelte'
     import CarCard from '../components/cards/CarCard.svelte'
     import { store } from '../store/store'
-    import { Link } from 'svelte-routing'
+    import { Link, navigate } from 'svelte-routing'
 
     // $: isLogin = !isNil(Cookies.get('auth'))
     $: isLogin = $store.isLogin
@@ -32,9 +32,12 @@
                     <p class="flex justify-center">Let's Find a Car !</p>
                     <button
                         class="btn"
-                        on:click={() => console.log($store.isLogin)}
+                        on:click|preventDefault={() => {
+                            navigate('/findingcar', { replace: true })
+                        }}
                     >
-                        <Link to="/findingcar">Search for Car !</Link>
+                        <!-- <Link to="/findingcar">Search for Car !</Link> -->
+                        Search for car !
                     </button>
                 </div>
             {/if}

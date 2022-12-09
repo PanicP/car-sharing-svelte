@@ -12,7 +12,10 @@
     const handleLogin = () => {
         $store.registedUsers.forEach((regUser) => {
             if (regUser?.user === loginUser) {
+                console.log(regUser?.user, ' ', loginUser)
                 if (regUser?.password === loginPassword) {
+                    // console.log(regUser?.password, ' ', loginPassword)
+                    $store.isLogin = true
                     isLoginModalOpen = false
                     isShowNoti = true
                     setTimeout(() => {
@@ -21,7 +24,6 @@
                 }
             }
         })
-        $store.isLogin = true
     }
 
     const handleRegister = () => {
@@ -67,7 +69,9 @@
     </div>
     <div class="navbar-end">
         {#if isLogin}
-            <button class="btn ml-1" on:click={handleLogout}>Log out</button>
+            <button class="btn ml-1" on:click|preventDefault={handleLogout}
+                >Log out</button
+            >
         {:else}
             <label class="btn" for="login-modal">Login</label>
 
