@@ -3,11 +3,14 @@
     import { Link, navigate } from 'svelte-routing'
     import { store } from '../store/store'
     import Cookies from 'js-cookie'
+    import Noti from './Noti.svelte'
 
     let loginUser, loginPassword
     let registerUser, registerPassword, registerRePassword
     let isLoginModalOpen, isRegisterModalOpen
-    let isShowNoti = false
+    let isShowLoginNoti = false
+    let isShowLogoutNoti = false
+    let isRegisterSuccessfullyNoti = false
 
     const handleLogin = () => {
         $store.registedUsers.forEach((regUser) => {
@@ -17,10 +20,10 @@
                     // console.log(regUser?.password, ' ', loginPassword)
                     $store.isLogin = true
                     isLoginModalOpen = false
-                    isShowNoti = true
+                    isShowLoginNoti = true
                     setTimeout(() => {
-                        isShowNoti = false
-                    }, 5000)
+                        isShowLoginNoti = false
+                    }, 3000)
                 }
             }
         })
@@ -33,10 +36,10 @@
                 { user: registerUser, password: registerPassword },
             ]
             isRegisterModalOpen = false
-            isShowNoti = true
+            isRegisterSuccessfullyNoti = true
             setTimeout(() => {
-                isShowNoti = false
-            }, 5000)
+                isRegisterSuccessfullyNoti = false
+            }, 3000)
         }
     }
 
@@ -44,6 +47,10 @@
         Cookies.remove('auth')
         $store.isLogin = false
         navigate('/', { replace: true })
+        isShowLogoutNoti = true
+        setTimeout(() => {
+            isShowLogoutNoti = false
+        }, 3000)
     }
 
     // $: isLogin = !isNil(Cookies.get('auth'))
@@ -52,15 +59,9 @@
 
 <div class="navbar bg-base-100">
     <!-- noti -->
-    {#if isShowNoti}
-        <div class="toast toast-top toast-end z-10">
-            <div class="alert alert-success">
-                <div>
-                    <span>Successfully.</span>
-                </div>
-            </div>
-        </div>
-    {/if}
+    <Noti isShowNoti={isShowLoginNoti} label="Logged In" />
+    <Noti isShowNoti={isShowLogoutNoti} label="Logged Out" />
+    <Noti isShowNoti={isRegisterSuccessfullyNoti} label="Registered" />
     <!-- register modal -->
     <div class="navbar-start">
         <div class="btn btn-ghost normal-case text-xl">
