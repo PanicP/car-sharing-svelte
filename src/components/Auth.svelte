@@ -6,7 +6,7 @@
     // $: isLogin = !isNil(Cookies.get('auth'))
 
     $: isLogin = $store.isLogin
-    $: !isLogin && (() => navigate('/', { replace: true }))
+    $: !isLogin && (() => navigate('car-sharing-svelte/', { replace: true }))
 </script>
 
 <div>

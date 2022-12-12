@@ -46,7 +46,7 @@
     const handleLogout = () => {
         Cookies.remove('auth')
         $store.isLogin = false
-        navigate('/', { replace: true })
+        navigate('car-sharing-svelte/', { replace: true })
         isShowLogoutNoti = true
         setTimeout(() => {
             isShowLogoutNoti = false

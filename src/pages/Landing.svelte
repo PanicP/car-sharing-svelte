@@ -33,10 +33,11 @@
                     <button
                         class="btn"
                         on:click|preventDefault={() => {
-                            navigate('/findingcar', { replace: true })
+                            navigate('car-sharing-svelte/findingcar', {
+                                replace: true,
+                            })
                         }}
                     >
-                        <!-- <Link to="/findingcar">Search for Car !</Link> -->
                         Search for car !
                     </button>
                 </div>

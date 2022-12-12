@@ -13,7 +13,7 @@
 <div>
     {#each cars as car, index}
         <div class="mb-2 border-2">
-            <Link to={`/car/${car.id}`}>
+            <Link to={`car/${car.id}`}>
                 <div class="card card-side bg-base-100 shadow-xl">
                     <figure>
                         <img src={car.image} alt="Movie" />

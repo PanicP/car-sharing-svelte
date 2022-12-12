@@ -8,16 +8,21 @@
     export let url = ''
 </script>
 
+<svelte:head>
+    <script
+        defer
+        async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCy9QphZsJQHjpeaTyja9kx7PIK-9qgP1E&callback=initMap"
+    >
+    </script>
+</svelte:head>
+
 <main>
     <!-- <div>Landing</div>
   <Login /> -->
     <!-- svelte-ignore a11y-missing-attribute -->
     <html data-theme="dracula">
-        <Router {url}>
-            <!-- <nav>
-        <Link to="/">Home</Link>
-        <Link to="about">About</Link>
-      </nav> -->
+        <Router {url} basepath="/car-sharing-svelte">
             <div>
                 <Route path="car/:id" component={CarDetail} />
                 <Route path="findingcar" component={FindingCar} />
