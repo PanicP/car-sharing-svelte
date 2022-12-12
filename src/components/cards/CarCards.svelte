@@ -1,6 +1,6 @@
 <script>
     import { isEmpty } from 'lodash-es'
-    import { Link } from 'svelte-routing'
+    import { Link, navigate } from 'svelte-routing'
     import { store } from '../../store/store'
 
     const handleCancel = () => {
@@ -13,7 +13,12 @@
 <div>
     {#each cars as car, index}
         <div class="mb-2 border-2">
-            <Link to={`car/${car.id}`}>
+            <button
+                on:click={() =>
+                    navigate(`/car-sharing-svelte/car/${car.id}`, {
+                        replace: true,
+                    })}
+            >
                 <div class="card card-side bg-base-100 shadow-xl">
                     <figure>
                         <img src={car.image} alt="Movie" />
@@ -28,7 +33,7 @@
                         <div />
                     </div>
                 </div>
-            </Link>
+            </button>
         </div>
     {/each}
 </div>

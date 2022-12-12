@@ -1,17 +1,37 @@
 <script>
     import { isEmpty } from 'lodash-es'
-    import { Link } from 'svelte-routing'
+    import { Link, navigate } from 'svelte-routing'
     import { store } from '../../store/store'
 
     const handleCancel = () => {
         $store.bookedCars = []
     }
 
-    $: car = $store.bookedCars[0] ? $store.bookedCars[0] : []
+    $: car = $store.bookedCars[0]
+        ? $store.bookedCars[0]
+        : {
+              id: 0,
+              image: 'https://placeimg.com/400/300/people',
+              imageLarge: 'https://placeimg.com/1000/500/people',
+              user: {
+                  name: '',
+                  age: 0,
+                  sex: '',
+              },
+              car: {
+                  brand: '',
+                  model: '',
+              },
+              maxSeat: 0,
+              location: { lat: 50.558824, lng: 9.678458 },
+          }
 </script>
 
 <div class="mb-2 border-2">
-    <Link to={`car/${car.id}`}>
+    <element
+        on:click={() =>
+            navigate(`/car-sharing-svelte/car/${car.id}`, { replace: true })}
+    >
         <div class="card card-side bg-base-100 shadow-xl">
             <figure>
                 <img src={car.image} alt="Movie" />
@@ -27,12 +47,13 @@
                 <div class="card-actions justify-end">
                     <button
                         class="btn btn-primary"
-                        on:click|preventDefault={handleCancel}>Cancel</button
+                        on:click|preventDefault|stopPropagation={handleCancel}
+                        >Cancel</button
                     >
                 </div>
             </div>
         </div>
-    </Link>
+    </element>
 </div>
 
 <style></style>

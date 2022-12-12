@@ -33,7 +33,7 @@
                     <button
                         class="btn"
                         on:click|preventDefault={() => {
-                            navigate('car-sharing-svelte/findingcar', {
+                            navigate('/car-sharing-svelte/findingcar', {
                                 replace: true,
                             })
                         }}

@@ -46,7 +46,7 @@
     const handleLogout = () => {
         Cookies.remove('auth')
         $store.isLogin = false
-        navigate('car-sharing-svelte/', { replace: true })
+        navigate('/car-sharing-svelte/', { replace: true })
         isShowLogoutNoti = true
         setTimeout(() => {
             isShowLogoutNoti = false
@@ -64,9 +64,12 @@
     <Noti isShowNoti={isRegisterSuccessfullyNoti} label="Registered" />
     <!-- register modal -->
     <div class="navbar-start">
-        <div class="btn btn-ghost normal-case text-xl">
-            <Link to="/">Panic Sharing</Link>
-        </div>
+        <button
+            on:click={() => navigate('/car-sharing-svelte/', { replace: true })}
+            class="btn btn-ghost normal-case text-xl"
+        >
+            Panic Sharing
+        </button>
     </div>
     <div class="navbar-end">
         {#if isLogin}
