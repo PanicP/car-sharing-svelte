@@ -21,7 +21,7 @@
     <!-- <div>Landing</div>
   <Login /> -->
     <!-- svelte-ignore a11y-missing-attribute -->
-    <html data-theme="dracula">
+    <html data-theme="luxury">
         <Router {url} basepath="/car-sharing-svelte">
             <div>
                 <Route path="car/:id" component={CarDetail} />

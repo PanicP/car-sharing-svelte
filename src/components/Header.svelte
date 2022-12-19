@@ -4,6 +4,7 @@
     import { store } from '../store/store'
     import Cookies from 'js-cookie'
     import Noti from './Noti.svelte'
+    import FailedNoti from './FailedNoti.svelte'
 
     let loginUser, loginPassword
     let registerUser, registerPassword, registerRePassword
@@ -11,6 +12,8 @@
     let isShowLoginNoti = false
     let isShowLogoutNoti = false
     let isRegisterSuccessfullyNoti = false
+    let isRegisterFailedNoti = false
+    let errorMessage = ''
 
     const handleLogin = () => {
         $store.registedUsers.forEach((regUser) => {
@@ -24,7 +27,21 @@
                     setTimeout(() => {
                         isShowLoginNoti = false
                     }, 3000)
+                } else {
+                    isRegisterFailedNoti = true
+                    errorMessage = 'Username and/or Password is not correct'
+                    setTimeout(() => {
+                        isRegisterFailedNoti = false
+                        errorMessage = ''
+                    }, 3000)
                 }
+            } else {
+                isRegisterFailedNoti = true
+                errorMessage = 'Username and/or Password is not correct'
+                setTimeout(() => {
+                    isRegisterFailedNoti = false
+                    errorMessage = ''
+                }, 3000)
             }
         })
     }
@@ -39,6 +56,13 @@
             isRegisterSuccessfullyNoti = true
             setTimeout(() => {
                 isRegisterSuccessfullyNoti = false
+            }, 3000)
+        } else {
+            isRegisterFailedNoti = true
+            errorMessage = 'Password is not match'
+            setTimeout(() => {
+                isRegisterFailedNoti = false
+                errorMessage = ''
             }, 3000)
         }
     }
@@ -62,6 +86,7 @@
     <Noti isShowNoti={isShowLoginNoti} label="Logged In" />
     <Noti isShowNoti={isShowLogoutNoti} label="Logged Out" />
     <Noti isShowNoti={isRegisterSuccessfullyNoti} label="Registered" />
+    <FailedNoti isShowNoti={isRegisterFailedNoti} label={`${errorMessage}`} />
     <!-- register modal -->
     <div class="navbar-start">
         <button
